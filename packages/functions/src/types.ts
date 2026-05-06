@@ -342,6 +342,25 @@ type HandlerDefinitions = {
       url: string;
     };
   };
+  "stripe/createTenantCheckoutSession": {
+    input: {
+      tenantId: string;
+      priceId: string;
+      quantity: number;
+    };
+    output: {
+      sessionId: string;
+      clientSecret: string;
+    };
+  };
+  "stripe/createTenantCustomerPortalSession": {
+    input: {
+      tenantId: string;
+    };
+    output: {
+      url: string;
+    };
+  };
 
   // stt providers
   "sttProvider/list": {
@@ -585,6 +604,20 @@ export const StripeGetPricesInputZod = z
     priceIds: z.array(z.string().min(1)),
   })
   .strict() satisfies z.ZodType<HandlerInput<"stripe/getPrices">>;
+
+export const StripeCreateTenantCheckoutSessionInputZod = z
+  .object({
+    tenantId: z.string().min(1),
+    priceId: z.string().min(1),
+    quantity: z.number().int().positive(),
+  })
+  .strict() satisfies z.ZodType<HandlerInput<"stripe/createTenantCheckoutSession">>;
+
+export const StripeCreateTenantCustomerPortalSessionInputZod = z
+  .object({
+    tenantId: z.string().min(1),
+  })
+  .strict() satisfies z.ZodType<HandlerInput<"stripe/createTenantCustomerPortalSession">>;
 
 export const SetMyUserInputZod = z
   .object({
