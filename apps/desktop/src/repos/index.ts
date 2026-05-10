@@ -96,6 +96,7 @@ import {
 } from "./tone.repo";
 import {
   AldeaTranscribeAudioRepo,
+  AppleSpeechTranscribeAudioRepo,
   AzureTranscribeAudioRepo,
   BaseTranscribeAudioRepo,
   ElevenLabsTranscribeAudioRepo,
@@ -392,6 +393,12 @@ export const getTranscribeAudioRepo = (): TranscribeAudioRepoOutput => {
     }
     return {
       repo,
+      apiKeyId: null,
+      warnings: prefs.warnings,
+    };
+  } else if (prefs.mode === "apple-speech") {
+    return {
+      repo: new AppleSpeechTranscribeAudioRepo(),
       apiKeyId: null,
       warnings: prefs.warnings,
     };
