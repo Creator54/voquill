@@ -101,9 +101,6 @@ pub fn build() -> tauri::Builder<tauri::Wry> {
                         }
                     }
                 }
-                WindowEvent::CloseRequested { api, .. } => {
-                    api.prevent_close();
-                }
                 // On Windows, WebView2 automatically freezes JS execution when the
                 // hosting window is occluded (fully covered by another window) or
                 // minimized. This breaks global hotkey detection via keys_held events.
@@ -153,6 +150,7 @@ pub fn build() -> tauri::Builder<tauri::Wry> {
             app.manage(crate::state::GoogleOAuthState::from_env());
             app.manage(crate::state::OverlayState::new());
             app.manage(crate::state::RemoteReceiverState::new());
+            app.manage(crate::state::FloatingWindowState::new());
 
             match crate::system::auth_session::AuthSession::new(app.handle()) {
                 Ok(session) => {
@@ -326,6 +324,9 @@ pub fn build() -> tauri::Builder<tauri::Wry> {
             crate::commands::auth_sign_out,
             crate::commands::auth_is_signed_in,
             crate::commands::return_to_shell,
+            crate::commands::floating_window_create,
+            crate::commands::floating_window_destroy,
+            crate::commands::floating_window_list,
         ])
 }
 
