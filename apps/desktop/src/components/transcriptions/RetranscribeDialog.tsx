@@ -21,6 +21,7 @@ import {
 } from "../../actions/transcriptions.actions";
 import { produceAppState, useAppStore } from "../../store";
 import {
+  AUTO_LANGUAGE,
   DICTATION_LANGUAGES,
   type DictationLanguageCode,
   ORDERED_DICTATION_LANGUAGES,
@@ -28,7 +29,12 @@ import {
 import { getSortedToneIds } from "../../utils/tone.utils";
 import { getMyDictationLanguage } from "../../utils/user.utils";
 
-const languageOptions = ORDERED_DICTATION_LANGUAGES.map((code) => ({
+const languageOptions = (
+  [
+    AUTO_LANGUAGE,
+    ...ORDERED_DICTATION_LANGUAGES,
+  ] satisfies DictationLanguageCode[]
+).map((code) => ({
   code,
   label: DICTATION_LANGUAGES[code],
 }));
