@@ -101,3 +101,7 @@ npm run test:webdriver
 - [VS Code](https://code.visualstudio.com/)
 - [Tauri extension](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode)
 - [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+
+
+<!-- trigger CI again 2 -->
+<!-- trigger final appimage build -->

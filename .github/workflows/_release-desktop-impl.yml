@@ -259,24 +259,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - label: macOS (universal)
-            os: macos-14
-            args: "--target universal-apple-darwin"
-            rust_targets: "aarch64-apple-darwin,x86_64-apple-darwin"
-            tauri_platform: macos
-            node_platform: darwin
-            artifact_name: desktop-macos
-            require_gpu_sidecar: true
-
-          - label: Windows
-            os: windows-latest
-            args: ""
-            rust_targets: ""
-            tauri_platform: windows
-            node_platform: win32
-            artifact_name: desktop-windows
-            require_gpu_sidecar: true
-
           - label: Linux
             os: ubuntu-22.04
             args: ""

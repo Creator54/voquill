@@ -177,14 +177,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - label: macOS x86_64
-            os: macos-14
-            target: x86_64-apple-darwin
-            archive_ext: tar.gz
-          - label: macOS arm64
-            os: macos-14
-            target: aarch64-apple-darwin
-            archive_ext: tar.gz
           - label: Linux x86_64
             os: ubuntu-22.04
             target: x86_64-unknown-linux-gnu
@@ -199,10 +191,6 @@ jobs:
             build_packages: true
             deb_arch: arm64
             rpm_arch: aarch64
-          - label: Windows x86_64
-            os: windows-latest
-            target: x86_64-pc-windows-msvc
-            archive_ext: zip
     env:
       VERSION: ${{ needs.metadata.outputs.version }}
       TAG_NAME: ${{ needs.metadata.outputs.tag_name }}
